@@ -1,47 +1,74 @@
-body {
-    border: 1px black solid;
-    margin: 50 50;
-    background-color: #F0F0F0;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+main {
+    background-color: #333;
+    color: #f0f0f0;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    padding: 20px 20px 20px 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
 }
 
 label {
     margin-left: 20px;
     font-size: 20px;
-
 }
 
 #content {
-    background-color: #FFFFFF;
+    background-color: #444;
+    /* padding: 20px; */
+    /* border-radius: 5px; */
 }
 
 #text {
-    margin-top: 30px;
+    /* margin-top: 30px; */
     font-size: 40px;
 }
 
-h1 {
-    margin: auto;
-    width: 60%;
-    font-family: Helvetica;
+#banner {
+    background-color: #444;
+    color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Pacifico', cursive;;
     font-size: 60px;
 }
 
-h2 {
-    margin: auto;
-    font-family: Helvetica;
-    font-size: 25px;
-    margin-left: 10px;
+footer {
+    background-color: black;
+    color: white;
 }
 
+h1 {
+
+    text-align: center;
+}
+
+h2 {
+    font-size: 25px;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 
 ol {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    /* margin: 0;
+    padding: 0; */
     overflow: hidden;
-    background-color: #333333;
+    background-color: #555;
 }
-
 
 li {
     float: left;
@@ -56,8 +83,7 @@ li a {
 }
 
 li a:hover {
-    background-color: #111111;
-
+    background-color: #666;
 }
 
 /* #footer {
@@ -78,7 +104,6 @@ li a:hover {
 thead {
     background-color: #AAA;
     font-family: Helvetica;
-
 }
 
 tr,
@@ -87,5 +112,4 @@ td {
     border: 1px black solid;
     padding: 20 20;
     font-size: 30px;
-
 } */
