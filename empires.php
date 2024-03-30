@@ -33,12 +33,12 @@
     <h2>Game Settings</h2>
     <form action="create_game.php" method="POST">
         <label for="numPlayers">Number of Players:</label>
-        <input type="number" id="numPlayers" name="numPlayers" min="2" required>
+        <input type="number" id="numPlayers" name="numPlayers" min="2" value="6" required>
 
         <label for="numRedHerrings" title="additional fake names added by the computer">Number of Red Herrings:</label>
-        <input type="number" id="numRedHerrings" name="numRedHerrings" min="0" required>
+        <input type="number" id="numRedHerrings" name="numRedHerrings" min="0" value="1" required>
 
-        <label>Format:</label>
+        <!-- <label>Format:</label> -->
         <div class="radio-button">
             <input type="radio" id="local" name="format" value="local" required>
             <label for="local">Local</label>
