@@ -7,10 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['abortGame'])) {
     $roomCode = $_SESSION['roomCode'];
 
     // Remove the game from the database
-    $dao->removeGame($roomCode);
-
-    // Remove the players from the database
-    $dao->removePlayers($roomCode);
+    $dao->abortGame($roomCode);
 
     // Clear the session
     session_unset();

@@ -19,7 +19,7 @@
 
 CREATE TABLE IF NOT EXISTS game_sessions (
     room_code INTEGER PRIMARY KEY,
-    _id TEXT,
+    host_id TEXT,
     expected_players INTEGER,
     num_red_herrings INTEGER
 );

@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['roomCode'])) {
     // Generate a unique game key and ID for the host
     do {
         $roomCode = rand(10000, 99999);  // Generate a random 5-digit number
-    } while ($dao->roomCodeExists($roomCode));  // Check if the game key already exists
+    } while ($dao->roomExists($roomCode));  // Check if the game key already exists
     $hostId = uniqid();
 
     // Get the number of players and red herrings from the form
@@ -73,7 +73,7 @@ $currentNumPlayers = $dao->getNumPlayersInRoom($roomCode);
 </div>
 <?php endif; ?>
 
-<?php if (!$_SESSION['isHost']): ?>
+<?php if (!$_SESSION['isHost'] && !isset($_SESSION['Alias'])): ?>
 <div>
     <form action="leave_game.php" method="POST">
         <button type="submit" name="leaveGame">Leave Game</button>
