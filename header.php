@@ -1,3 +1,11 @@
+<?php 
+session_start();
+$currentPage = basename($_SERVER['PHP_SELF']);
+if (isset($_SESSION['roomCode']) && $currentPage != 'game.php' && $currentPage != 'show_names.php')  {
+    header("Location: game.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>

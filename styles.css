@@ -112,6 +112,16 @@ nav {
     background-color:#333;
 }
 
+.game {
+    display: flexbox;
+    text-align: center;
+    padding: 20px;
+}
+
+.nameList {
+    display: flexbox;
+}
+
 .about {
     display: flex;
     flex-direction: column;

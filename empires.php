@@ -4,7 +4,7 @@
     <h1>Empires</h1>
     <button class="collapsible">Show Rules</button>
     <div class="rules" style="display: none;">
-      <p>Each Player chooses a secret alias which they will input into their device (remote format with room number) or into the hosts device (local format)</p>
+      <p>Each Player chooses a secret alias which they will input into their device (remote format with room number) or into the s device (local format)</p>
       <p>These are compiled into a list which is read out to the group, with optional additional Red Herrings (fake names from the computer)</p>
       <p>After the names have been read out twice the youngest player can begin by choosing someone and guessing their alias</p>
       <p>If they are correct, that person becomes part of the guesser's Empire and they can guess again, if they are incorrect the queried person gets to guess next</p>
@@ -31,20 +31,20 @@
     }
     </script>
     <h2>Game Settings</h2>
-    <form action="create_game.php" method="POST">
+    <form action="game.php" method="POST">
         <label for="numPlayers">Number of Players:</label>
-        <input type="number" id="numPlayers" name="numPlayers" min="2" value="6" required>
+        <input type="number" id="numPlayers" name="numPlayers" min="2" value="6">
 
         <label for="numRedHerrings" title="additional fake names added by the computer">Number of Red Herrings:</label>
-        <input type="number" id="numRedHerrings" name="numRedHerrings" min="0" value="1" required>
+        <input type="number" id="numRedHerrings" name="numRedHerrings" min="0" value="1">
 
         <!-- <label>Format:</label> -->
         <div class="radio-button">
-            <input type="radio" id="local" name="format" value="local" required>
+            <input type="radio" id="local" name="format" value="local">
             <label for="local">Local</label>
         </div>
         <div class="radio-button">
-            <input type="radio" id="remote" name="format" value="remote" required>
+            <input type="radio" id="remote" name="format" value="remote" checked>
             <label for="remote">Remote</label>
         </div>
 
