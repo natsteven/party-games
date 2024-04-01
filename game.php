@@ -82,6 +82,12 @@ $currentNumPlayers = $dao->getNumPlayersInRoom($roomCode);
 setInterval(function() {
     $.get('get_num_players.php?roomCode=' + <?php echo json_encode($roomCode); ?>, function(data) {
         $('#numPlayers').text(data);
+        var expectedPlayers = <?php echo json_encode($expectedPlayers); ?>;
+        var currentNumPlayers = parseInt(data, 10);
+        var showNamesButton = document.querySelector('button[name="showNames"]');
+        if (showNamesButton) {
+            showNamesButton.disabled = currentNumPlayers < expectedPlayers;
+        }
     });
 }, 5000);  // Refresh every 5 seconds
 </script>
