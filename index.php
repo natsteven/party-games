@@ -1,4 +1,12 @@
-<?php require_once "header.php"; ?>
+<?php 
+require_once "header.php";
+if (isset($_SESSION['messages'])) {
+    foreach ($_SESSION['messages'] as $message) {
+       echo "<div class='message'>{$message}</div>";
+    }
+    unset($_SESSION['messages']);
+}
+?>
     <nav>
         <div class="navLink">
             <a href="join.php">Join Game</a>

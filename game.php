@@ -41,13 +41,50 @@ $currentNumPlayers = $dao->getNumPlayersInRoom($roomCode);
 
 ?>
 <div class="game">
-<div>
-    <h2>Room Code: <?php echo $roomCode; ?></h2>
-</div>
-<div>
-    <h3>Players:<span id="numPlayers"> <?php echo $currentNumPlayers; ?></span> / <?php echo $expectedPlayers; ?></h3>
-</div>
+<button class="collapsible">Show Rules</button>
+    <div class="rules" style="display: none;">
+      <p>After creating a game share the room code with other players so they can join</p>
+      <p>Each Player chooses a secret alias which they will input into their device</p>
+      <p>These are compiled into a list, with optional additional Red Herrings (fake names from the computer)</p>
+      <p>When ready the host can show the list and should read the names out slowly to the group twice</p>
+      <p>Someone (perhaps the youngest player) can begin by attempting to guess someone's alias</p>
+      <p>If they are correct, that person becomes part of the guesser's Empire and they can guess again</p>
+      <p>If they are incorrect the queried person gets to guess next</p>
+      <p>This continues until an Empire takes over the entire group, thereby crowning a winner</p>
+      <p>Subjects of one's empire are encouraged to aid in the conquering of other empires</p>
+    </div>
 
+    <script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+          this.textContent = "Show Rules";
+        } else {
+          content.style.display = "block";
+          this.textContent = "Hide Rules";
+        }
+      });
+    }
+    </script>
+<div>
+    <h2>Share this Room Code: <?php echo $roomCode; ?></h2>
+</div>
+<div>
+    <h3>Players Ready:<span id="numPlayers"> <?php echo $currentNumPlayers; ?></span> / <?php echo $expectedPlayers; ?></h3>
+</div>
+<script>
+setInterval(function() {
+    $.get('get_num_players.php?roomCode=' + <?php echo json_encode($roomCode); ?>, function(data) {
+        $('#numPlayers').text(data);
+    });
+}, 5000);  // Refresh every 5 seconds
+</script>
 <?php if (!isset($_SESSION['Alias'])): ?>
 <div>
     <form action="add.php" method="POST">

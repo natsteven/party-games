@@ -120,6 +120,29 @@ class Dao {
         $stmt->execute();
     }
 
+    public function emailExists($email){
+        $stmt = $this->db->prepare("SELECT COUNT(*) FROM users WHERE email = :email");
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        return $count > 0;
+    }
+
+    public function addUser($email, $password){
+        $stmt = $this->db->prepare("INSERT INTO users (email, password) VALUES (:email, :password)");
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':password', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    public function validateUser($email, $password){
+        $stmt = $this->db->prepare("SELECT password FROM users WHERE email = :email");
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $hash = $stmt->fetchColumn();
+        return password_verify($password, $hash);
+    }
+
     public function close() {
         $this->db->close();
     }

@@ -4,11 +4,14 @@
     <h1>Empires</h1>
     <button class="collapsible">Show Rules</button>
     <div class="rules" style="display: none;">
-      <p>Each Player chooses a secret alias which they will input into their device (remote format with room number) or into the s device (local format)</p>
-      <p>These are compiled into a list which is read out to the group, with optional additional Red Herrings (fake names from the computer)</p>
-      <p>After the names have been read out twice the youngest player can begin by choosing someone and guessing their alias</p>
-      <p>If they are correct, that person becomes part of the guesser's Empire and they can guess again, if they are incorrect the queried person gets to guess next</p>
-      <p>This continues until an Empire takes over the entire group, thereby crowning a winner.</p>
+      <p>After creating a game share the room code with other players so they can join</p>
+      <p>Each Player chooses a secret alias which they will input into their device</p>
+      <p>These are compiled into a list, with optional additional Red Herrings (fake names from the computer)</p>
+      <p>When ready the host can show the list and should read the names out slowly to the group twice</p>
+      <p>Someone (perhaps the youngest player) can begin by attempting to guess someone's alias</p>
+      <p>If they are correct, that person becomes part of the guesser's Empire and they can guess again</p>
+      <p>If they are incorrect the queried person gets to guess next</p>
+      <p>This continues until an Empire takes over the entire group, thereby crowning a winner</p>
       <p>Subjects of one's empire are encouraged to aid in the conquering of other empires</p>
     </div>
 
@@ -39,14 +42,14 @@
         <input type="number" id="numRedHerrings" name="numRedHerrings" min="0" value="1">
 
         <!-- <label>Format:</label> -->
-        <div class="radio-button">
+        <!-- <div class="radio-button">
             <input type="radio" id="local" name="format" value="local">
             <label for="local">Local</label>
         </div>
         <div class="radio-button">
             <input type="radio" id="remote" name="format" value="remote" checked>
             <label for="remote">Remote</label>
-        </div>
+        </div> -->
 
         <button class="createButton" type="submit">Create Game</button>
     </form>
