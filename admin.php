@@ -22,7 +22,7 @@ function printAdmins($dao) {
 
 function printGames($dao) {
     $rows = $dao->getGames();
-
+    echo "<h2>Current Games:</h2>";
     echo "<table>";
     echo "<tr><th>Room Code</th><th>Host ID</th><th>Expected Players</th><th>Red Herrings</th><th>Action</th></tr>";
     foreach ($rows as $row) {
@@ -39,7 +39,7 @@ function printGames($dao) {
 
 function printGamePlayers($dao) {
     $rows = $dao->getGamePlayers();
-
+    echo "<h2>Current Players:</h2>";
     echo "<table>";
     echo "<tr><th>Player ID</th><th>Alias</th><th>Room Code</th></tr>";
     foreach ($rows as $row) {
@@ -50,7 +50,7 @@ function printGamePlayers($dao) {
 
 function printUsers($dao) {
     $rows = $dao->getUsers();
-
+    echo "<h2>Registered Users:</h2>";
     echo "<table>";
     echo "<tr><th>ID</th><th>Email</th><th>Password</th></tr>";
     foreach ($rows as $row) {
@@ -73,13 +73,11 @@ function printRedHerrings() {
 
 <div class = 'admin'>
 <h1>Admin Page</h1>
-<h2>Current Games:</h2>
+
 <?php
 printGames($dao);
-?>
-<h2>Current Players:</h2>
-<?php
 printGamePlayers($dao);
+printUsers($dao);
 ?>
 
 </div>
