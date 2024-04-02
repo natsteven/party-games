@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])):
 
     if (!empty($messages)):
         $_SESSION['messages'] = $messages;
-        // $_SESSION['inputs'] = $_POST;
+        $_SESSION['inputs']['email'] = $email;
         header("Location: ../register.php");
         exit;
     endif;

@@ -13,7 +13,7 @@ if (isset($_SESSION['messages'])) {
   <div>
   <form action="handlers/login_handler.php" method="POST">
     <label for="email">Email:</label>
-    <input type="text" id="email" name="email" required>
+    <input type="text" id="email" name="email" value="<?php echo isset($_SESSION['inputs']['email']) ? $_SESSION['inputs']['email'] : ''; ?>" required>
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required>
     <button type="submit">Login</button>
@@ -23,4 +23,6 @@ if (isset($_SESSION['messages'])) {
   </div>
 </div>
 
-<?php require_once "includes/footer.php"; ?>
+<?php
+unset($_SESSION['inputs']);
+require_once "includes/footer.php"; ?>

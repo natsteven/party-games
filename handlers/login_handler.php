@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
         exit;
     } else {
         $messages[] = "Invalid email or password.";
+        $_SESSION['inputs']['email'] = $email;
     }
 }
 

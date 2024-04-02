@@ -11,7 +11,7 @@ if (isset($_SESSION['message'])): ?>
 <?php endif; ?>
   <form action="handlers/join_game.php" method="POST">
     <label for="roomCode">Enter Room Code:</label>
-    <input type="text" id="roomCode" name="roomCode" required>
+    <input type="text" id="roomCode" name="roomCode" value="<?php echo isset($_SESSION['inputs']['roomCode'])?$_SESSION['inputs']['roomCode']:''?>" required>
     <button type="submit">Join Game</button>
   </form>
 </div>
