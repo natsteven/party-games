@@ -6,17 +6,17 @@ class Dao {
 
     public function __construct () {
         // LOCAL:
-        $host = 'localhost';
-        $dbname = 'partygames';
-        $user = 'nat';
-        $password = 'Squerryes42';
+        // $host = 'localhost';
+        // $dbname = 'partygames';
+        // $user = 'nat';
+        // $password = 'Squerryes42';
 
         // HEROKU:
-        // $url = parse_url(getenv("DATABASE_URL"));
-        // $host = $url["host"];
-        // $dbname = substr($url["path"], 1);
-        // $user = $url["user"];
-        // $password = $url["pass"];
+        $url = parse_url(getenv("DATABASE_URL"));
+        $host = $url["host"];
+        $dbname = substr($url["path"], 1);
+        $user = $url["user"];
+        $password = $url["pass"];
     
         $dsn = "pgsql:host=$host;dbname=$dbname";
         try {
