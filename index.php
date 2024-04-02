@@ -17,5 +17,10 @@ if (isset($_SESSION['messages'])) {
         <div class="navLink">
             <a href="about.php">About</a>
         </div>
+        <?php if (isset($_SESSION['admin'])): ?>
+            <div class="navLink">
+                <a href="admin.php">Admin</a>
+            </div>
+        <?php endif; ?>
     </nav>
 <?php require_once "includes/footer.php"; ?>

@@ -143,6 +143,43 @@ class Dao {
         return password_verify($password, $hash);
     }
 
+    public function isAdmin($email){
+        $stmt = $this->db->prepare("SELECT * FROM admins WHERE email = :email");
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch() !== false;
+    }
+
+    public function getAdmins(){
+        $stmt = $this->db->prepare("SELECT * FROM admins");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getUsers(){
+        $stmt = $this->db->prepare("SELECT * FROM users");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getGames(){
+        $stmt = $this->db->prepare("SELECT * FROM game_sessions");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getGamePlayers(){
+        $stmt = $this->db->prepare("SELECT * FROM game_players");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllRedHerrings(){
+        $stmt = $this->db->prepare("SELECT * FROM redherrings");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function close() {
         $this->db->close();
     }

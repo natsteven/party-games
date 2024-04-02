@@ -147,10 +147,18 @@ nav {
     animation-fill-mode: forwards;
 }
 
-.loginform {
-    display: block;
+.admin {
+    display: flexblox;
 }
 
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid white;
+    padding: 8px;
+}
 
 ol{
     list-style-type: none;

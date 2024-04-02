@@ -1,7 +1,11 @@
 CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     email TEXT UNIQUE,
     password TEXT
+);
+
+CREATE TABLE IF NOT EXISTS admins (
+    email TEXT PRIMARY KEY
 );
 
 -- CREATE TABLE IF NOT EXISTS preferences (
@@ -25,7 +29,7 @@ CREATE TABLE IF NOT EXISTS game_sessions (
 );
 
 CREATE TABLE IF NOT EXISTS game_players (
-    user_id TEXT PRIMARY KEY,
+    player_id TEXT PRIMARY KEY,
     alias TEXT,
     room_code INTEGER,
     FOREIGN KEY(room_code) REFERENCES game_sessions(room_code)

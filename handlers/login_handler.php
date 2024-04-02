@@ -11,6 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
 
     if ($dao->validateUser($email, $password)) {
         $_SESSION['logged'] = true;
+        if ($dao->isAdmin($email)) {
+            $_SESSION['admin'] = true;
+        }
         header("Location: ../index.php");
         exit;
     } else {
