@@ -1,17 +1,20 @@
-<?php require_once "header.php"; ?>
+<?php 
+require_once "includes/header.php";
 
-<div class="join">
-  <form action="join_game.php" method="POST">
-    <label for="roomCode">Enter Room Code:</label>
-    <input type="text" id="roomCode" name="roomCode" required>
-    <button type="submit">Join Game</button>
-  </form>
-</div>
-<?php if (isset($_SESSION['message'])): ?>
+echo '<div class="join">';
+
+if (isset($_SESSION['message'])): ?>
   <div class="message">
     <p><?php echo $_SESSION['message']; ?></p>
   </div>
   <?php unset($_SESSION['message']); ?>
 <?php endif; ?>
+  <form action="handlers/join_game.php" method="POST">
+    <label for="roomCode">Enter Room Code:</label>
+    <input type="text" id="roomCode" name="roomCode" required>
+    <button type="submit">Join Game</button>
+  </form>
+</div>
 
-<?php require_once "footer.php"; ?>
+
+<?php require_once "includes/footer.php"; ?>

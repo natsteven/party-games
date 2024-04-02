@@ -1,5 +1,5 @@
 <?php 
-require_once "header.php";
+require_once "includes/header.php";
 
 echo "<div class='registerform'>";
 
@@ -10,7 +10,7 @@ if (isset($_SESSION['messages'])) {
   unset($_SESSION['messages']);
 }
 ?>
-  <form action="register_handler.php" method="POST">
+  <form action="handlers/register_handler.php" method="POST">
     <label for="email">Email:</label>
     <input type="text" id="email" name="email" required>
     <label for="password">Password:</label>
@@ -21,4 +21,4 @@ if (isset($_SESSION['messages'])) {
   </form>
 </div>
 
-<?php require_once "footer.php"; ?>
+<?php require_once "includes/footer.php"; ?>

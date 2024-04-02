@@ -1,6 +1,6 @@
 <?php
-require_once "Dao.php";
-require_once "header.php";
+require_once "includes/Dao.php";
+require_once "includes/header.php";
 $dao = new Dao();
 
 // Check if actaully creating game or being redirected from add_host.php
@@ -93,7 +93,7 @@ setInterval(function() {
 </script>
 <?php if (!isset($_SESSION['Alias'])): ?>
 <div>
-    <form action="add.php" method="POST">
+    <form action="handlers/add.php" method="POST">
         <label for="Alias">Choose Alias:</label>
         <input type="text" id="Alias" name="Alias" required>
         <button type="submit">Submit</button>
@@ -110,15 +110,15 @@ setInterval(function() {
 
 
 <div>
-    <form action="abort_game.php" method="POST">
+    <form action="handlers/abort_game.php" method="POST">
         <button type="submit" name="abortGame">Abort Game</button>
     </form>
 </div>
 <?php endif; ?>
 
-<?php if (!$_SESSION['isHost'] && !isset($_SESSION['Alias'])): ?>
+<?php if (!$_SESSION['isHost']): ?>
 <div>
-    <form action="leave_game.php" method="POST">
+    <form action="handlers/leave_game.php" method="POST">
         <button type="submit" name="leaveGame">Leave Game</button>
     </form>
 </div>
@@ -129,4 +129,4 @@ setInterval(function() {
     <h3>Waiting for Host to start the game...</h3>
 </div>
 <?php endif; ?>
-<?php require_once "footer.php"; ?>
+<?php require_once "includes/footer.php"; ?>

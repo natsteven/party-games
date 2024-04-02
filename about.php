@@ -1,4 +1,4 @@
-<?php require_once "header.php"; ?>
+<?php require_once "includes/header.php"; ?>
 <div class="about">
     <h1>About</h1>
     <p>Welcome to Party Games!, the ultimate destination for online party games! Whether you're ing a virtual party or just looking for some fun games to play with friends, we've got you covered.</p>
@@ -15,4 +15,4 @@
         </li>
     </ol>
 </div>
-<?php require_once "footer.php"; ?>
+<?php require_once "includes/footer.php"; ?>

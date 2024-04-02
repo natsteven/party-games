@@ -1,4 +1,4 @@
-<?php require_once "header.php"; ?>
+<?php require_once "includes/header.php"; ?>
 
 <div class="empires">
     <h1>Empires</h1>
@@ -55,4 +55,4 @@
     </form>
 </div>
 
-<?php require_once "footer.php"; ?>
+<?php require_once "includes/footer.php"; ?>

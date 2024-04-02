@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "Dao.php";
+require_once "../includes/Dao.php";
 $dao = new Dao();
 
 // Get the host's alias and game key from the form
@@ -14,5 +14,5 @@ print_r($_SESSION);
 $dao->addPlayer($Id, $Alias, $roomCode);
 
 // Redirect back to the host game page
-header("Location: game.php");
+header("Location: ../game.php");
 exit;

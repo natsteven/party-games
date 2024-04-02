@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "Dao.php";
+require_once "../includes/Dao.php";
 $dao = new Dao();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['leaveGame'])) {
@@ -14,6 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['leaveGame'])) {
     session_destroy();
 
     // Redirect the user to the home page
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit;
 }

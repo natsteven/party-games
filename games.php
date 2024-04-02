@@ -1,4 +1,4 @@
-<?php require_once "header.php"; ?>
+<?php require_once "includes/header.php"; ?>
 <div class="games-list">
     <div class="play"><a href="empires.php">Play Empires</a></div>
     <p>A strategy game where you build and expand your own empire.</p>
@@ -7,4 +7,4 @@
 </div>
 
 
-<?php require_once "footer.php"; ?>
+<?php require_once "includes/footer.php"; ?>

@@ -1,5 +1,5 @@
 <?php
-require_once "Dao.php";
+require_once "includes/Dao.php";
 $dao = new Dao();
 
 if (isset($_GET['roomCode'])) {

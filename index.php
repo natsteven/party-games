@@ -1,5 +1,5 @@
 <?php 
-require_once "header.php";
+require_once "includes/header.php";
 if (isset($_SESSION['messages'])) {
     foreach ($_SESSION['messages'] as $message) {
        echo "<div class='message'>{$message}</div>";
@@ -18,4 +18,4 @@ if (isset($_SESSION['messages'])) {
             <a href="about.php">About</a>
         </div>
     </nav>
-<?php require_once "footer.php"; ?>
+<?php require_once "includes/footer.php"; ?>

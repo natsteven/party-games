@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "Dao.php";
+require_once "../includes/Dao.php";
 $dao = new Dao();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])):
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])):
     if (!empty($messages)):
         $_SESSION['messages'] = $messages;
         // $_SESSION['inputs'] = $_POST;
-        header("Location: register.php");
+        header("Location: ../register.php");
         exit;
     endif;
 
@@ -37,6 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])):
 
     $_SESSION['logged'] = true;
 
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit;
 endif;

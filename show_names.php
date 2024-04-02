@@ -1,6 +1,6 @@
 <?php
-require_once "header.php";
-require_once "Dao.php";
+require_once "includes/header.php";
+require_once "includes/Dao.php";
 $dao = new Dao();
 
 $roomCode = $_SESSION['roomCode'];
@@ -17,10 +17,10 @@ foreach ($list as $name) {
 
 if ($_SESSION['isHost']): ?> 
     <div>
-        <form action="abort_game.php" method="POST">
+        <form action="handlers/abort_game.php" method="POST">
             <button type="submit" name="abortGame">End Game</button>
         </form>
     </div>
 <?php endif;
 echo "</div>";
-require_once "footer.php";
+require_once "includes/footer.php";
