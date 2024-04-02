@@ -10,8 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['leaveGame'])) {
     $dao->removePlayer($Id);
 
     // Clear the session
-    session_unset();
-    session_destroy();
+    unset($_SESSION['roomCode']);
+    unset($_SESSION['isHost']);
+    unset($_SESSION['Alias']);
+    // session_destroy();
 
     // Redirect the user to the home page
     header("Location: ../index.php");

@@ -36,7 +36,6 @@ class Dao {
     }
 
     public function addPlayer($userId, $alias, $roomCode){
-        $alias = ucwords(strtolower($alias));
         $stmt = $this->db->prepare("INSERT INTO game_players (user_id, alias, room_code) VALUES (:user_id, :alias, :room_code)");
         $stmt->bindValue(':user_id', $userId, PDO::PARAM_STR); 
         $stmt->bindValue(':alias', $alias, PDO::PARAM_STR);
@@ -178,6 +177,16 @@ class Dao {
         $stmt = $this->db->prepare("SELECT * FROM redherrings");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function addRedHerrings($roomCode){
+        $newRedHerrings = $this->getAliasesInRoom($roomCode);
+        $stmt = $this->db->prepare("INSERT INTO redherrings (name) VALUES (:name)");
+        foreach ($newRedHerrings as $name) {
+            $name = ucwords(strtolower($name));
+            $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+            $stmt->execute();
+        }
     }
 
     public function close() {

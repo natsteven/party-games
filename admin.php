@@ -52,16 +52,16 @@ function printUsers($dao) {
     $rows = $dao->getUsers();
     echo "<h2>Registered Users:</h2>";
     echo "<table>";
-    echo "<tr><th>ID</th><th>Email</th><th>Password</th></tr>";
+    echo "<tr><th>ID</th><th>Email</th></tr>";
     foreach ($rows as $row) {
-        echo "<tr><td>" . $row['id'] . "</td><td>" . $row['email'] . "</td><td>" . $row['password'] . "</td></tr>";
+        echo "<tr><td>" . $row['id'] . "</td><td>" . $row['email'] . "</td></tr>";
     }
     echo "</table>";
 }
 
-function printRedHerrings() {
+function printRedHerrings($dao) {
     $rows = $dao->getAllRedHerrings();
-
+    echo "<h2>Red Herrings:</h2>";
     echo "<table>";
     echo "<tr><th>Name</th></tr>";
     foreach ($rows as $row) {
@@ -78,6 +78,7 @@ function printRedHerrings() {
 printGames($dao);
 printGamePlayers($dao);
 printUsers($dao);
+printRedHerrings($dao);
 ?>
 
 </div>

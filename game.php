@@ -3,9 +3,14 @@ require_once "includes/Dao.php";
 require_once "includes/header.php";
 $dao = new Dao();
 
+if (!($_SERVER['REQUEST_METHOD'] == 'POST') && !isset($_SESSION['roomCode'])) {
+    header("Location: index.php");
+    exit;
+}
+
 // Check if actaully creating game or being redirected from add_host.php
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['roomCode'])) {
-    session_unset();
+    // session_unset();
     // Generate a unique game key and ID for the host
     do {
         $roomCode = rand(10000, 99999);  // Generate a random 5-digit number
@@ -28,7 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['roomCode'])) {
     exit;
 } else {
     if (isset($_SESSION['roomCode']) && !$dao->roomExists($_SESSION['roomCode'])) {
-        session_unset();
+        unset($_SESSION['roomCode']);
+        unset($_SESSION['isHost']);
+        unset($_SESSION['Alias']);
         header("Location: index.php");
         exit;
     }
@@ -78,9 +85,10 @@ $currentNumPlayers = $dao->getNumPlayersInRoom($roomCode);
 <div>
     <h3>Players Ready:<span id="numPlayers"> <?php echo $currentNumPlayers; ?></span> / <?php echo $expectedPlayers; ?></h3>
 </div>
+
 <script>
 setInterval(function() {
-    $.get('get_num_players.php?roomCode=' + <?php echo json_encode($roomCode); ?>, function(data) {
+    $.get('handlers/get_num_players.php?roomCode=' + <?php echo json_encode($roomCode); ?>, function(data) {
         $('#numPlayers').text(data);
         var expectedPlayers = <?php echo json_encode($expectedPlayers); ?>;
         var currentNumPlayers = parseInt(data, 10);
@@ -91,6 +99,7 @@ setInterval(function() {
     });
 }, 5000);  // Refresh every 5 seconds
 </script>
+
 <?php if (!isset($_SESSION['Alias'])): ?>
 <div>
     <form action="handlers/add.php" method="POST">
@@ -128,5 +137,6 @@ setInterval(function() {
 <div>
     <h3>Waiting for Host to start the game...</h3>
 </div>
-<?php endif; ?>
-<?php require_once "includes/footer.php"; ?>
+<?php endif;
+
+require_once "includes/footer.php"; ?>

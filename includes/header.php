@@ -1,8 +1,8 @@
 <?php 
 session_start();
 $currentPage = basename($_SERVER['PHP_SELF']);
-if (isset($_SESSION['roomCode']) && $currentPage != 'game.php' && $currentPage != 'show_names.php')  {
-    header("Location: ../game.php");
+if (isset($_SESSION['roomCode']) && ($currentPage == "join.php"|| $currentPage == "games.php"))  {
+    header("Location: /party-games/game.php");
     exit;
 }
 ?>
