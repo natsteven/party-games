@@ -24,9 +24,15 @@ function printGames($dao) {
     $rows = $dao->getGames();
 
     echo "<table>";
-    echo "<tr><th>Room Code</th><th>Host ID</th><th>Expected Players</th><th>Number of Red Herrings</th></tr>";
+    echo "<tr><th>Room Code</th><th>Host ID</th><th>Expected Players</th><th>Number of Red Herrings</th><th>Action</th></tr>";
     foreach ($rows as $row) {
-        echo "<tr><td>" . $row['room_code'] . "</td><td>" . $row['host_id'] . "</td><td>" . $row['expected_players'] . "</td><td>" . $row['num_red_herrings'] . "</td></tr>";
+        echo "<tr><td>" . $row['room_code'] . "</td><td>" . $row['host_id'] . "</td><td>" . $row['expected_players'] . "</td><td>" . $row['num_red_herrings'] . "</td>";
+        echo "<td>
+                <form method='POST' action='handlers/delete_game.php'>
+                    <input type='hidden' name='room_code' value='" . $row['room_code'] . "'>
+                    <input type='submit' value='Delete'>
+                </form>
+              </td></tr>";
     }
     echo "</table>";
 }
