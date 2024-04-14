@@ -135,6 +135,7 @@ class Dao {
         $stmt->execute();
     }
 
+    # default is BCRYPT Hash and salt is handled by the functions as well
     public function validateUser($email, $password){
         $stmt = $this->db->prepare("SELECT password FROM users WHERE email = :email");
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
