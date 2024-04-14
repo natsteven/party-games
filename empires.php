@@ -4,35 +4,16 @@
     <h1>Empires</h1>
     <button class="collapsible">Show Rules</button>
     <div class="rules" style="display: none;">
-      <p>After creating a game share the room code with other players so they can join</p>
-      <p>Each Player chooses a secret alias which they will input into their device</p>
-      <p>These are compiled into a list, with optional additional Red Herrings (fake names from the computer)</p>
-      <p>When ready the host can show the list and should read the names out slowly to the group twice</p>
-      <p>Someone (perhaps the youngest player) can begin by attempting to guess someone's alias</p>
-      <p>If they are correct, that person becomes part of the guesser's Empire and they can guess again</p>
-      <p>If they are incorrect the queried person gets to guess next</p>
-      <p>This continues until an Empire takes over the entire group, thereby crowning a winner</p>
-      <p>Subjects of one's empire are encouraged to aid in the conquering of other empires</p>
+      <p>After creating a game <b>share the room code</b> with other players so they can join.</p>
+      <p>Each Player should <b>choose an alias</b>, which should be kept secret, and input into their device. 
+      These are compiled into a list, with optional additional Red Herrings (fake names from the computer)</p>
+      <p>When ready the host can <b>show the aliases</b> list and should read the names out <i>slowly</i> to the group twice</p>
+      <p>Someone (perhaps the youngest player) will begin and should attempt to <b>guess a player's alias</b>. 
+        If they are correct, that person becomes part of the guesser's <i>Empire</i> and they can guess again. 
+        If they are incorrect the queried person gets to guess next</p>
+      <p>This continues until an Empire takes over the entire group, thereby crowning a winner. Subjects of one's empire are encouraged to aid in the conquering of other empires</p>
     </div>
 
-    <script>
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
-
-    for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-          this.textContent = "Show Rules";
-        } else {
-          content.style.display = "block";
-          this.textContent = "Hide Rules";
-        }
-      });
-    }
-    </script>
     <h2>Game Settings</h2>
     <form action="game.php" method="POST">
         <label for="numPlayers">Number of Players:</label>
@@ -54,5 +35,5 @@
         <button class="createButton" type="submit">Create Game</button>
     </form>
 </div>
-
+<script src = "js/rules.js"></script>
 <?php require_once "includes/footer.php"; ?>

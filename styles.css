@@ -222,9 +222,17 @@ input, button {
 
 .rules {
     font-size: 20px;
+    text-align: left;
 }
 
-.radio-button {
+.collapsible {
+    font-size : 36px;
+}
+
+button[name="showNames"] {
+    font-size: 36px; /* Adjust as needed */
+}
+/* .radio-button {
     display: inline-block;
     margin: 10px;
     padding: 10px;
@@ -239,9 +247,9 @@ input, button {
 
 .radio-button label {
     font-size: 16px;
-    /* color: #000; */
+    color: #000;
 }
 
 .radio-button input[type="radio"]:checked + label {
     color: #f00;
-}
+} */

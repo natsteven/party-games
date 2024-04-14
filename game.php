@@ -8,6 +8,10 @@ if (!($_SERVER['REQUEST_METHOD'] == 'POST') && !isset($_SESSION['roomCode'])) {
     exit;
 }
 
+if (isset($_SESSION['list']) && $_SESSION['isHost']) {
+    header("Location: show_names.php");
+}
+
 // Check if actaully creating game or being redirected from add_host.php
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['roomCode'])) {
     // session_unset();
@@ -47,7 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['roomCode'])) {
 $currentNumPlayers = $dao->getNumPlayersInRoom($roomCode);
 
 ?>
-<div class="game">
+<div class="game"
+data-roomCode = "<?php echo $roomCode; ?>"
+data-expectedPlayers = "<?php echo $expectedPlayers; ?>"
+>
 <button class="collapsible">Show Rules</button>
     <div class="rules" style="display: none;">
       <p>After creating a game share the room code with other players so they can join</p>
@@ -61,44 +68,12 @@ $currentNumPlayers = $dao->getNumPlayersInRoom($roomCode);
       <p>Subjects of one's empire are encouraged to aid in the conquering of other empires</p>
     </div>
 
-    <script>
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
-
-    for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-          this.textContent = "Show Rules";
-        } else {
-          content.style.display = "block";
-          this.textContent = "Hide Rules";
-        }
-      });
-    }
-    </script>
 <div>
     <h2>Share this Room Code: <?php echo $roomCode; ?></h2>
 </div>
 <div>
     <h3>Players Ready:<span id="numPlayers"> <?php echo $currentNumPlayers; ?></span> / <?php echo $expectedPlayers; ?></h3>
 </div>
-
-<script>
-setInterval(function() {
-    $.get('handlers/get_num_players.php?roomCode=' + <?php echo json_encode($roomCode); ?>, function(data) {
-        $('#numPlayers').text(data);
-        var expectedPlayers = <?php echo json_encode($expectedPlayers); ?>;
-        var currentNumPlayers = parseInt(data, 10);
-        var showNamesButton = document.querySelector('button[name="showNames"]');
-        if (showNamesButton) {
-            showNamesButton.disabled = currentNumPlayers < expectedPlayers;
-        }
-    });
-}, 5000);  // Refresh every 5 seconds
-</script>
 
 <?php if (!isset($_SESSION['Alias'])): ?>
 <div>
@@ -135,8 +110,12 @@ setInterval(function() {
 
 <?php if (!$_SESSION['isHost'] && isset($_SESSION['Alias'])): ?>
 <div>
-    <h3>Waiting for Host to start the game...</h3>
+    <h3 id="gameStatus">Waiting for Host to start the game...</h3>
 </div>
-<?php endif;
+<?php endif;?>
 
-require_once "includes/footer.php"; ?>
+<script src = "js/rules.js"></script>
+<script src = "js/num_players.js"></script>
+<script src = "js/game_status.js"></script>
+
+<?php require_once "includes/footer.php"; ?>

@@ -2,7 +2,10 @@
 session_start();
 $currentPage = basename($_SERVER['PHP_SELF']);
 if (isset($_SESSION['roomCode']) && ($currentPage == "join.php"|| $currentPage == "games.php"))  {
-    header("Location: /party-games/game.php");
+    # locally, ah well
+    // header("Location: /party-games/game.php");
+    # deployed
+    header("Location: /game.php");
     exit;
 }
 ?>

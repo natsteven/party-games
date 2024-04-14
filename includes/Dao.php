@@ -27,17 +27,18 @@ class Dao {
     }
 
     public function startGame($roomCode, $Id, $expectedPlayers, $numRedHerrings){
-        $stmt = $this->db->prepare("INSERT INTO game_sessions (room_code, host_id, expected_players, num_red_herrings) VALUES (:room_code, :host_id, :expected_players, :num_red_herrings)");
+        $stmt = $this->db->prepare("INSERT INTO game_sessions (room_code, host_id, expected_players, num_red_herrings, started) VALUES (:room_code, :host_id, :expected_players, :num_red_herrings, :started)");
         $stmt->bindValue(':room_code', $roomCode, PDO::PARAM_INT);
         $stmt->bindValue(':host_id', $Id, PDO::PARAM_STR);
         $stmt->bindValue(':expected_players', $expectedPlayers, PDO::PARAM_INT);
         $stmt->bindValue(':num_red_herrings', $numRedHerrings, PDO::PARAM_INT);
+        $stmt->bindValue(':started', false, PDO::PARAM_BOOL);
         $stmt->execute();
     }
 
-    public function addPlayer($userId, $alias, $roomCode){
-        $stmt = $this->db->prepare("INSERT INTO game_players (user_id, alias, room_code) VALUES (:user_id, :alias, :room_code)");
-        $stmt->bindValue(':user_id', $userId, PDO::PARAM_STR); 
+    public function addPlayer($playerId, $alias, $roomCode){
+        $stmt = $this->db->prepare("INSERT INTO game_players (player_id, alias, room_code) VALUES (:player_id, :alias, :room_code)");
+        $stmt->bindValue(':player_id', $playerId, PDO::PARAM_STR); 
         $stmt->bindValue(':alias', $alias, PDO::PARAM_STR);
         $stmt->bindValue(':room_code', $roomCode, PDO::PARAM_INT);
         $stmt->execute();
@@ -113,9 +114,9 @@ class Dao {
         $stmt->execute();
     }
 
-    public function removePlayer($userId){
-        $stmt = $this->db->prepare("DELETE FROM game_players WHERE user_id = :userId");
-        $stmt->bindValue(':userId', $userId, PDO::PARAM_STR);
+    public function removePlayer($playerId){
+        $stmt = $this->db->prepare("DELETE FROM game_players WHERE player_id = :playerId");
+        $stmt->bindValue(':playerId', $playerId, PDO::PARAM_STR);
         $stmt->execute();
     }
 
@@ -187,6 +188,20 @@ class Dao {
             $stmt->bindValue(':name', $name, PDO::PARAM_STR);
             $stmt->execute();
         }
+    }
+
+    public function setStartedGame($roomCode){
+        $stmt = $this->db->prepare("UPDATE game_sessions SET started = true WHERE room_code = :room_code");
+        $stmt->bindValue(':room_code', $roomCode, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    public function getGameStarted($roomCode){
+        $stmt = $this->db->prepare("SELECT started FROM game_sessions WHERE room_code = :room_code");
+        $stmt->bindValue(':room_code', $roomCode, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['started'];
     }
 
     public function close() {
