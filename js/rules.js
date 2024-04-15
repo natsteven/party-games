@@ -7,10 +7,18 @@ for (i = 0; i < coll.length; i++) {
     var content = this.nextElementSibling;
     if (content.style.display === "block") {
       content.style.display = "none";
-      this.textContent = "Show Rules";
+      if (content.classList.contains("rules")) {
+        this.textContent = "Show Rules";
+      } else if (content.classList.contains("nameList")) {
+        this.textContent = "Show Aliases";
+      }
     } else {
       content.style.display = "block";
-      this.textContent = "Hide Rules";
+      if (content.classList.contains("rules")) {
+        this.textContent = "Hide Rules";
+      } else if (content.classList.contains("nameList")) {
+        this.textContent = "Hide Aliases";
+      }
     }
   });
 }

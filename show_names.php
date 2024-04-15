@@ -27,13 +27,21 @@ if (!isset($_SESSION['list']) && $_SESSION['isHost']) {
     // Get the list from the session
     $list = $_SESSION['list'];
 }
-
-echo "<div class = nameList><h2>Aliases:</h2>";
-foreach ($list as $name) {
-    $alias = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
-    echo "<ul>$alias</ul>";
-}
-
+?>
+<div class="game">
+<button class="collapsible">Show Names</button>
+    <div class = nameList style="display: none;"><h2>Aliases:</h2>
+    <?php
+    foreach ($list as $name) {
+        $alias = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
+        echo "<ul>$alias</ul>";
+    }
+    ?>
+    </div>
+<button id ="playButton">Play Names</button>
+<button id ="pauseButton">Pause</button>
+<button id ="restartButton">Restart</button>
+<?php
 // not really necessary to check but whatever
 if ($_SESSION['isHost']): ?> 
     <div>
@@ -49,6 +57,8 @@ if (isset($_SESSION['admin'])): ?>
             <button type="submit" name="addRedHerrings">Add Red Herrings</button>
         </form>
     </div>
-<?php endif;
-echo "</div>";
+<?php endif;?>
+<script src = "js/speak.js"></script>
+<script src = "js/rules.js"></script>
+<?php
 require_once "includes/footer.php";

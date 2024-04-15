@@ -179,8 +179,7 @@ li {
     border-radius: 20px;
 }
 
-input,
-button {
+input, button {
     display: block;
     width: auto;
     margin: auto;
@@ -202,6 +201,7 @@ button {
     font-size: 36px;
 }
 
-button[name="showNames"] {
+#playButton {
     font-size: 36px;
 }
+
